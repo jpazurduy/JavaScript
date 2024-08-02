@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        var taskList = []
+
+        function addNew() {
+            // alert("Adding...")
+           const newTask = document.getElementById("newTask").value;
+           if (newTask) {
+                taskList.push(newTask)
+                localStorage.setItem("task", JSON.stringify(taskList) )
+                displayTasks()
+                document.getElementById("newTask").value = ""     
+           }
+           
+        }
+
+        function displayTasks() {
+            taskList = JSON.parse(localStorage.getItem("taks"));
+
+            
+            const list = document.getElementById("listTask");
+
+            if (taskList) {
+                list.innerHTML = ""
+
+                taskList.forEach((task) => {
+                    list.innerHTML = list.innerHTML + `
+                        <li> ${task} </li>
+                    `
+                });
+            }
+            
+        }
+        displayTasks()
+    </script>
+
+</head>
+<body>
+    <h1>To do List</h1>
+    <input type="text" id="newTask">
+    <button onclick="addNew()">Add</button>
+
+    <ul id="listTask">
+        <li>Default value</li>
+    </ul>
+</body>
+</html>
