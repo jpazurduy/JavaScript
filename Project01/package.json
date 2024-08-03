@@ -1,0 +1,15 @@
+{
+  "name": "javascriptcourse",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ./Clase01/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jorge Azurduy",
+  "license": "ISC",
+  "description": "Calculator",
+  "devDependencies": {
+    "electron": "^31.3.1"
+  }
+}
