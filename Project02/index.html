@@ -6,49 +6,67 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
+    
+
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+        <div>
+            <div class="full p-4">
+                <h1 class="text-2xl font-bold text-center mb-6">To do List</h1>
+                <div class="mb-4 flex">
+                    <input type="text" id="newTask" class="flex-1 p-2 border border-gray-300 rounded-l-lg ">
+                    <button onclick="addNew()" class="bg-blue-500 text-white p-2 rounded-r-lg">Add</button>
+                </div>
+                <ul id="listTask" class="list-none p-0">
+                    <li>Default value</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+   
+    
+
+   
+
     <script>
-        var taskList = []
+        var tasks = [];
+
+        displayTasks()
 
         function addNew() {
-            // alert("Adding...")
            const newTask = document.getElementById("newTask").value;
-           if (newTask) {
-                taskList.push(newTask)
-                localStorage.setItem("task", JSON.stringify(taskList) )
-                displayTasks()
-                document.getElementById("newTask").value = ""     
-           }
            
+            tasks.push(newTask)
+            console.log(tasks)
+            localStorage.setItem("tasks", JSON.stringify(tasks) )
+            document.getElementById("newTask").value = ""     
+            displayTasks()
         }
 
         function displayTasks() {
-            taskList = JSON.parse(localStorage.getItem("taks"));
-
-            
+            tasks = JSON.parse(localStorage.getItem("tasks"));
             const list = document.getElementById("listTask");
-
-            if (taskList) {
+            
+            console.log("enter")
+            
+            if (tasks) {
                 list.innerHTML = ""
-
-                taskList.forEach((task) => {
-                    list.innerHTML = list.innerHTML + `
-                        <li> ${task} </li>
-                    `
+                tasks.forEach((task, index) => {
+                    if (list) {
+                        list.innerHTML = list.innerHTML + `
+                        <li class="flex justify-between items-center bg-gray-100 rounded-lg shadow-md p-2 mb-2"> ${task} <button onClick="deleteTask(${index})" class="bg-red-500 text-white p-2 rounded-lg">X</button> </li>`
+                    } 
                 });
             }
-            
         }
-        displayTasks()
+
+        function deleteTask(index){
+            tasks.splice(index, 1);
+            localStorage.setItem("tasks", JSON.stringify(tasks))
+
+            displayTasks()
+        }
     </script>
-
-</head>
-<body>
-    <h1>To do List</h1>
-    <input type="text" id="newTask">
-    <button onclick="addNew()">Add</button>
-
-    <ul id="listTask">
-        <li>Default value</li>
-    </ul>
 </body>
 </html>
