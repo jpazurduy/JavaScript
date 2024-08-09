@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        h1 {
+            color: #fff2f09a;
+            background-color: aqua;
+            padding: 16px;
+            margin: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Funciones JavaScript</h1>
+    <!-- <button onclick="suma()">Pruebas</button>
+    <button onclick="resta()">Pruebas</button>
+    <button onclick="multiplicar()">Pruebas</button> -->
+
+    <h4 id="texto"></h4>
+
+    <div id="productos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+    <script>
+        function suma() {
+            alert("Alerta")
+        }
+
+        const resta = function() {
+            alert("Resta")
+        }
+
+        const multiplicar = () => {
+            alert("Multiplica")
+            return 2*2;
+        }
+
+        let jsonData1 = {
+            produto: "Tele",
+            desc: "TV",
+            precio: "230",
+            tipo: "Smart",
+            color: "Negro",
+            url: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQA4AMBIgACEQEDEQH/xAAcAAEAAAcBAAAAAAAAAAAAAAAAAQIDBAYHCAX/xABCEAACAgECAQgFBwoGAwAAAAAAAQIDBAURBgcSITFBUXGxE2FygZEUIzI3obLBFSIkNEJSYnSSoiUmJzbC0TNTY//EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDeIAAAAAAAAAAAAAAAABDcCIIbhyS63t4gRBRllURezugn7SIfLKP3+jv26AK4LC/WMChN35ePUl22XQX4njZXH/C2K2rtf05ST2ca7fSP4R6QMo3BgGu8ouIuGLtZ4cshmKrLqxpelpnWt5vukk+pmfRe8U32oCIAAAAAAAAAAAAADxuLs/K0zh3My8GdccmCiq5WR50U3JLpXb1mqXxJxrmVxnZrtVMZJNKjGhHofuYG7kSysjD6U4x8XsaIuv1y/wDXOI9Qs9SscV9mxY24EbN/lGRk379fprnLf+rcDe+Zr2kYSbzNUwqNv/ZkRj5s8fI5ROEqN/8AGqLWuyiMrfupmmlgYdP/AIqIR8EkSyhCK6IpeAG1b+Vbh6C+Yq1C/u5uM4J/1bHl5HK/SntjaJfL123wX2JtmtrOauxFvOfWBnuRyu6rJv0GlYVa7HKyc38Nl5nlZHKlxLY94W41K7qqF5ybMOsn1lvOQGTZHKFxJbvz9Qte/c+av7Ujzb+MtfsTXy+UfXzVJ/3bniTfSUmwPTnxLrs01PV8vb+Gah91Is7s/Nve92blWe3dJ/iW4AllGMnvKKk+9om6NttgAMw01b8luoLv1zGX2ROjV0JI510pf6YZS79fx19kTosAAAAAAAAAAAAAAx/j3/aWf4Q+/E1PjvbGq9iPkbX4/e3CGpPujH78TUlMv0ar2F5ATzkW1kiaci2smBLZItrJk1ky1smBLZMtrJE1ky3nICScihORNORRkwISZKAAAAAAdoGa6R9WV3r4ix/KB0Sc7aR9Wc138R4/lA6JAAAAAAAAAAAAAAMd5QujgzVH3Vp/3I0/VL9Hq9heRt3lHe3A+rvup/FGnK5fMV+wvICNki2skTWTLayYEtky1smT2TLWyYEtki3nImnMoTYEspEj6Q+sAAAAAAAAAZppD/03Ue/iOjygdFHOmj/7Bpj38R0f8DosAAAAAAAAAAAAAAxflOe3AOtvq2x/xRpmMvmYeyvI3HyqfV5rv8q/NGlVP5qHsoBZMtrJk1ky2smBJZMt7JEbJFCcgITkUZMjJkoAAAAAAAAAAgBmWjP/ACbhQ7+IqP8AgdGnN+iP/LWmx7+IaPOB0gAAAAAAAAAAAAAAYpyp/V5r38q/NGjlP5qHso3jyp/V7rv8q/wNDuXzcfABZItrJEbJlvOQEJyKEpEZspsAAAAAAAAAAABAiAMp0KX+EaPDv4go+9A6VOZdDl+j6FDv16j70DpoAAAAAAAAAAAAAAxXlS+r7Xf5WRz+5/mrwOl+INO/K+jZWBz4x9NHm7yW66+01xqPJzm11ysUtNnGKbk5pRSXr3XQBqiyRQnI9jIjjPOtxaqMS91tp2U2TUJbd0lLZlXI4b1KMI2y4c1JVSScZ493PTXg4PzAx1sgXmTj0Y8ubkY+rYz/APpixnt8JIt3PTVLb8pKMv3bMecX+IFMFb0FM2vRahgz7vnua37miotOyZfQhVZ7F0H+IFqC4swM2pb2YWTFd7qlt8di1c4qXNckpL9lvp+AEwIEQAAAAB9QHtaXk1Y0NCtyJqumvWabLJvqjFSi237kdO4WXj5+JVl4dsLse6KnXZB7qSfU0coZW8tKwYJb75i8zpjgSLhwdo8WtmsaPbuB7wAAAAAAAAYAECndbXRXK26ca64LeU5vZJetlQtc7TsLUYRrz8THyq4y5yjfWppPv2faBjmRxl8stljcLYFmq3xe0r9+Zj1+M+33JljkcHZ/EEoz4x1eVtG+/wAgxG66ff8Ave8zamiqitV0Vwrrj1QhFJL3In2XcB4UeHdAq0mel1YFFWLNbSjCOz6Op79e6KHCuLnaXLI0/IvryMOqX6Ncp/ntd0l3+ZkbhF9cV8CmsPHW7VUU317LrAmlGFi2moyXdJJlhk6JpGV0X6bhz37XTHcvHiV/suUfBkvyaxfQufvAx3L5PeEsrfn6LjRb7YLmnjZfI3wlkJqui+j112f9mdOGTHqcZEvPyF117+DA1hbyH4NcnPTNbzMWXh/00WGRyScT085YfFHpodkclylv7mmjb6yH+1FomjkRYGicnk444x9+bRpeau91wTfwSPKyeE+KMb9b4Vrml1ujnLyZ0erYtbkVPxA5YycW7HT+WcO51Hrja1t/VFllO7TlW246nQ12yohYvvROtHzX9JJ+JZ5Wk6VltvK03DuffZRGT+LQHK8Z6bPb0erVLfqV2PZB/YpL7SvDB9I9qc3Bs9m9J/B7G/eIeTvhzUsSz0WJTg3JNq6utNLxi+ho1ZicB6jl4rysHGpyIQ6ZwqThJx7Gunp369uz1gYzk4kqoYNF6hzvTc7bnJrbfvOlOCOjhLSer9Wj1eBpbhrQeHczVasXV8/M03Lham8TJgoqz+GM/X0+v1G+8CjHw8OnGxIKFFUFGuKe+yXrAuQAAAAAAAAAAAAAgRAENgRIAAAAAAENk+tIldVb64InAFB4tb6VuvBlN4sl9GySLtkALN05MfozjL3Eu+VHrqUvBl8AMW4s1KePpUqOZKNmVL0Mduvb9p/Df3tF3oSp0/TaqZ/m2P8AOnuu19nu6vcR1DRbs/XcTNtugsXFh+bVt0uW/W+zsXwPXdFb+kt36wPD13RND4iodWp41dz22Vi6Jx8GvLpMZo0nivhS2K4ey/yvpjf6lmzUZRX8M31fFr1Gwfk9S6oL3EVTWu8ClgZN+Ri125WNLFtkvzqZTjJxfiuhl2mU1Bdm5OlsBOCCIgAAAAAAAAAAAAAAAAAAAIbAANhsAA2GwADYhsgAGyGyAAikgwAIgAAAAP/Z"
+        }
+
+        let jsonData2 = {
+            produto: "Monitor",
+            desc: "TV",
+            precio: "230",
+            tipo: "Smart",
+            color: "Cafe",
+            url: "data:image/jpeg;base64,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"
+        }
+
+        let productos = [jsonData1, jsonData2, jsonData2, jsonData2, jsonData2]
+
+        //document.getElementById("texto").innerText = JSON.stringify(jsonData1)
+
+        let html = ""
+        productos.forEach(element => {
+            html = html + ` <div class="bg-blue-200 p-4 rounded-lg shadow-lg">
+                                <img src="${element.url}" width="100px" class="w-full h-48 object-cover rounded-t-lg mb-4"/>
+                                <h2 class="text-xl font-semibold mb-2">${element.produto}</h2>
+                                <p class="text-gray-700 mb-1"><strong>COD: </strong>${element.desc}</p>
+                                <p class="text-gray-700 mb-1"><strong>PRECIO: </strong>${element.precio}</p>
+                                <p class="text-gray-700 mb-1"><strong>COLOR: </strong>${element.color}</p>
+                                <p class="text-gray-700 mb-1"><strong>TIPO: </strong>${element.tipo}</p>
+
+                            </div>
+                        `
+        })
+
+        document.getElementById("productos").innerHTML = html
+    </script>
+</body>
+</html>
