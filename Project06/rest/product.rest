@@ -1,0 +1,7 @@
+GET http://127.0.0.1:3000/producto
+
+### guardar POST http://127.0.0.1:3000/producto Content-Type: application/json
+
+{
+"nombre": "MONITOR", "precio": 1500, "cantidad": 4, "descripcion": "Monitor marca ASUS"
+}

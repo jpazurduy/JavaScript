@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <div id="app">
+        <h1>Vue con CDN</h1>
+        <h1>{{ tittle }}</h1>
+        <h2>{{ subTittle}}</h2>
+        <input type="text" v-model="tittle">
+        <br>
+        <input type="text" v-model="subTittle">
+        <br>
+        <br>
+
+
+        <label for="n">Name</label>
+        <input type="text" v-model="{{product.name}}">
+        <br>
+        <label for="n">Price</label>
+        <input type="text" v-model="{{product.price}}">
+        <br>
+        <label for="n">Quantity</label>
+        <input type="text" v-model="{{product.quantity}}">
+        <br>
+        <label for="n">Image</label>
+        <input type="text" v-model="{{product.image}}">
+        <br>
+        
+
+        <br>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>QUANTITY</th>
+                    <th>IMAGE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for='prod in products'>
+                    <td>{{ prod.id }}</td>
+                    <td>{{ prod.name }}</td>
+                    <td>{{ prod.price }}</td>
+                    <td>{{ prod.quantity }}</td>
+                    <td>{{ prod.image }}</td>
+                    
+                    
+                </tr>
+            </tbody>
+        </table>
+
+        {{ products }}
+    </div>
+
+     <!-- logica para  veu-->
+    <script>
+        const {createApp, ref } = Vue;
+
+        const app = createApp({
+            setup() {
+                //vars
+                let tittle = ref("Test")
+                let subTittle = ref("#1")
+                const products = ref([])
+                const product = ref({})  // object
+
+
+                //funcs
+                async function getProducts() {
+                    const response = await axios.get("http://localhost:3000/products")
+                    products.value = response.data
+                }
+
+                // return vars
+
+                return { tittle, subTittle, products  }
+            }
+        })
+
+        app.mount('#app');
+    </script>
+</body>
+</html>
