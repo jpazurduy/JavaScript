@@ -1,7 +1,13 @@
-GET http://127.0.0.1:3000/producto
+GET http://127.0.0.1:3000/product
 
-### guardar POST http://127.0.0.1:3000/producto Content-Type: application/json
+
+POST http://127.0.0.1:3000/product
+Content-Type: application/json
 
 {
-"nombre": "MONITOR", "precio": 1500, "cantidad": 4, "descripcion": "Monitor marca ASUS"
+    "name": "Parlantes",
+    "price": "20",
+    "quantity": "100",
+    "description": "Speakers 100Pro",
+    "image": "https://2d73e25b29782b6d6766-9c8af5cbfef16739445bc76457060528.ssl.cf2.rackcdn.com/a4743e42d32ea20ababf790729d39964_635042177466960000_medium.jpg"
 }

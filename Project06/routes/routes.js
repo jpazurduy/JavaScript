@@ -6,7 +6,7 @@ const productController = require("./../controllers/product.controller")
 // endpoints
 
 Router.get("/product", productController.listProducts)
-// Router.get("/product", productController.getProduct)
+Router.post("/product", productController.saveProduct)
 // Router.get("/product", productController.saveProduct)
 // Router.get("/product", productController.updateProduct)
 // Router.get("/product", productController.deleteProduct)
