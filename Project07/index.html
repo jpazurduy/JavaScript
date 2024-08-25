@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
@@ -20,48 +20,71 @@
         <br>
         <br>
 
-
-        <label for="n">Name</label>
-        <input type="text" v-model="{{product.name}}">
-        <br>
-        <label for="n">Price</label>
-        <input type="text" v-model="{{product.price}}">
-        <br>
-        <label for="n">Quantity</label>
-        <input type="text" v-model="{{product.quantity}}">
-        <br>
-        <label for="n">Image</label>
-        <input type="text" v-model="{{product.image}}">
-        <br>
-        
-
+        <button type="button" class="brn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">New Product</button>
         <br>
 
-        <table border="1">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>NAME</th>
                     <th>PRICE</th>
                     <th>QUANTITY</th>
+                    <th>DESCRIPTION</th>
                     <th>IMAGE</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for='prod in products'>
-                    <td>{{ prod.id }}</td>
+                <tr v-for="prod in products">
+                     <td>{{ prod._id }}</td>
                     <td>{{ prod.name }}</td>
                     <td>{{ prod.price }}</td>
                     <td>{{ prod.quantity }}</td>
-                    <td>{{ prod.image }}</td>
-                    
-                    
+                    <td>{{ prod.description }}</td>
+                    <!-- <td>
+                        <img :src="require(prod.image)" alt="", width="100">
+                    </td> -->
                 </tr>
             </tbody>
         </table>
 
-        {{ products }}
+        <div id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" class="modal fade" aria-hidden="true"> 
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Title</h1>
+                        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="n">Name</label>
+                        <input type="text" v-model="product.name" class="form-control">
+                        <br>
+                        <label for="p">Price</label>
+                        <input type="text" v-model="product.price" class="form-control">
+                        <br>
+                        <label for="q">Quantity</label>
+                        <input type="text" v-model="product.quantity" class="form-control">
+                        <br>
+                        <label for="i">Image</label>
+                        <input type="text" v-model="product.image" class="form-control">
+                        <br>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-seconday" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" @click="saveProduct" data-bs-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- {{ products }} -->
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
      <!-- logica para  veu-->
     <script>
@@ -70,21 +93,40 @@
         const app = createApp({
             setup() {
                 //vars
-                let tittle = ref("Test")
-                let subTittle = ref("#1")
+                let tittle = ref("")
+                let subTittle = ref("")
                 const products = ref([])
                 const product = ref({})  // object
 
 
                 //funcs
                 async function getProducts() {
+                    console.log("getProducts")
                     const response = await axios.get("http://localhost:3000/products")
                     products.value = response.data
+                    console.log(products.value)
+                }
+
+                getProducts()
+
+                async function saveProduct() {
+                    console.log("saveProduct")
+                    await axios.post("http://localhost:3000/product", product.value)
+
+                    Swal.fire({
+                        tittle: "Producto register successfully",
+                        text: "Click para continuar",
+                        icon: "success"
+                    });
+
+                    getProducts()
+
+                    products.value = {}
                 }
 
                 // return vars
 
-                return { tittle, subTittle, products  }
+                return { tittle, subTittle, products, product, saveProduct  }
             }
         })
 
