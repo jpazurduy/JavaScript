@@ -19,6 +19,7 @@ async function listProducts(req, res) {
 
 async function saveProduct(req, res) {
     try {
+        console.log("SaveProduct")
         const product = new Product(req.body);
         await product.save();
 

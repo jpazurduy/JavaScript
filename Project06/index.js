@@ -1,6 +1,8 @@
 const express = require("express")
 const Router = require("./routes/routes")
 const connectDB = require("./models/db");
+const { Server } = require("socket.io")
+
 var cors = require("cors")
 
 // arrancar express
