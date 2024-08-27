@@ -7,8 +7,8 @@ const productController = require("./../controllers/product.controller")
 
 Router.get("/products", productController.listProducts)
 Router.post("/product", productController.saveProduct)
-// Router.get("/product", productController.saveProduct)
-// Router.get("/product", productController.updateProduct)
+Router.patch("/product", productController.updateProduct)
+Router.delete("/product", productController.deleteProduct)
 // Router.get("/product", productController.deleteProduct)
 
 

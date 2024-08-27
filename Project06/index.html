@@ -1,0 +1,38 @@
+<h1>CHAT con Socket IO</h1>
+<hr>
+<main class="flex-1 p-4">
+  <div class="bg-white rounded-lg shadow-lg p-4 h-full flex flex-col">
+
+    <ul id="mensajes" class="flex-1 overflow-y-auto p-2 space-y-2"></ul>
+
+    <div class="mt-4 flex">
+
+      <input type="text" id="mensaje" onclick="enviarMensaje()" class="flex-1 border border-gray-300 rounded-l g">
+      <button onclick="enviarMensaje()">Enviar Mensaje</button>
+
+    </div>
+
+    <hr>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      const socket = io();
+
+
+      function enviarMensaje() {
+        let mensaje = document.getElementById("mensaje").value
+        socket.emit('mi-chat', mensaje)
+      }
+
+      socket.on('mi-chat', function (msg) {
+        console.log("MENSAJE DE SERVER: ", msg)
+        let valor = document.getElementById("mensajes").innerHTML;
+        document.getElementById("mensajes").innerHTML = `${valor}<li> ${msg}</li>`
+      })
+    </script>
+
+  </div>
+</main>
+<script src="https://cdn.tailwindcss.com"></script>
