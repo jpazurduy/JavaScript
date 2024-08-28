@@ -35,7 +35,7 @@ getProducts()
                     <td>{{ prod.quantity }}</td>
                     <td>{{ prod.description }}</td>
                     <td>
-                        <img :src="prod.image" alt="", width="100">
+                        <img :src="prod.image" alt="asdf" width="100">
                     </td>
                 </tr>
             </tbody>
