@@ -1,13 +1,13 @@
 <template>
-  <h1>Product dsaf</h1>
+  <h1>Product</h1>
   {{ products }}
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import productService from '../../../Services/product.service'
 
-const products = ref([])
+const products = ref([""])
 
 onMounted(() => getProducts())
 
