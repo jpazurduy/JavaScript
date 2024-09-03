@@ -14,16 +14,17 @@
   },
   "dependencies": {
     "@primevue/themes": "^4.0.0",
+    "axios": "^1.7.5",
     "chart.js": "3.3.2",
+    "pinia": "^2.1.7",
     "primeicons": "^6.0.1",
     "primevue": "^4.0.0",
-    "axios": "^1.7.5",
-    "pinia": "^2.1.7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
     "@nightwatch/vue": "^3.1.1",
+    "@primevue/auto-import-resolver": "^4.0.1",
     "@rushstack/eslint-patch": "^1.8.0",
     "@vitejs/plugin-vue": "^5.0.5",
     "@vue/eslint-config-prettier": "^9.0.0",
@@ -35,16 +36,15 @@
     "geckodriver": "^4.4.1",
     "jsdom": "^24.1.0",
     "nightwatch": "^3.6.3",
-    "postcss": "^8.4.41",
+    "postcss": "^8.4.44",
     "prettier": "^3.2.5",
+    "sass": "^1.55.0",
     "tailwindcss": "^3.4.10",
+    "tailwindcss-primeui": "^0.3.2",
     "ts-node": "^10.9.2",
+    "unplugin-vue-components": "^0.27.3",
     "vite": "^5.3.1",
     "vite-plugin-nightwatch": "^0.4.6",
-    "vitest": "^1.6.0",
-    "@primevue/auto-import-resolver": "^4.0.1",
-    "sass": "^1.55.0",
-    "tailwindcss-primeui": "^0.3.2",
-    "unplugin-vue-components": "^0.27.3"
+    "vitest": "^1.6.0"
   }
 }

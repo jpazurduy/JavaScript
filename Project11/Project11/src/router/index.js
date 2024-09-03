@@ -38,7 +38,7 @@ const router = createRouter({
       component: AppLayout,
       children: [
         {
-          path: '/product',
+          path: '/admin/product',
           name: 'product',
           // route level code-splitting
           // this generates a separate chunk (About.[hash].js) for this route
